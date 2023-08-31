@@ -1,0 +1,272 @@
+@media (max-width: 991.98px) {
+  .hero {
+    padding-top: 117px;
+    padding-bottom: 134px;
+    background: -o-radial-gradient(67.78% 55.93%, 44.07% 44.07%, #555681 0%, #2E2B44 100%);
+    background: radial-gradient(44.07% 44.07% at 67.78% 55.93%, #555681 0%, #2E2B44 100%);
+  }
+
+  .hero__container {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: url('../img/hero-bg-md.png');
+    background-position: right 15px top;
+    background-size: 46%;
+  }
+
+  .hero__content {
+    padding-top: 13px;
+  }
+
+  .hero__title {
+    margin-bottom: 16px;
+    font-size: 50px;
+  }
+
+  .advantages__top {
+    margin-bottom: 23px;
+  }
+
+  .advantages__title {
+    max-width: unset;
+  }
+
+  .advantages__item {
+    padding: 91px 0 0 0;
+    background-position: left top;
+  }
+
+  .teachers {
+    padding-bottom: 49px;
+  }
+
+  .teachers__list {
+    row-gap: 23px;
+  }
+
+  .teachers__img {
+    margin-bottom: 31px;
+  }
+
+  .courses__item-1::before {
+    background-image: url('../img/cinema-bg-md.jpg');
+  }
+
+  .courses__item-2::before {
+    background-image: url('../img/blender-bg-md.jpg');
+  }
+
+  .courses__item-3::before {
+    background-image: url('../img/visualization-bg-md.jpg');
+  }
+
+  .courses__item-4::before {
+    background-image: url('../img/sculpting-bg-md.jpg');
+  }
+
+  .courses__time {
+    right: 10px;
+  }
+
+  .courses__text {
+    margin-bottom: 30px;
+  }
+
+  .courses__item .btn {
+    padding: 20px 56px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .header__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .logo {
+    margin-right: 0;
+    margin-bottom: 26px;
+  }
+
+  .hero {
+    padding-top: 64px;
+    background: -o-radial-gradient(67.78% 84.57%, 49.00% 49.00%, #555681 0%, #2E2B44 100%);
+    background: radial-gradient(49.00% 49.00% at 67.78% 84.57%, #555681 0%, #2E2B44 100%);
+  }
+
+  .hero__container {
+    background-image: none;
+  }
+
+  .advantages {
+    padding-bottom: 55px;
+  }
+
+  .advantages__image {
+    background-position: top left 15px
+  }
+
+  .teachers {
+    padding-bottom: 73px;
+  }
+
+  .courses {
+    padding-bottom: 79px;
+  }
+
+  .courses__item {
+    padding-right: 19px;
+  }
+
+  .courses__item-1::before {
+    background-image: url('../img/cinema-bg-sm.jpg');
+  }
+
+  .courses__item-2::before {
+    background-image: url('../img/blender-bg-sm.jpg');
+  }
+
+  .courses__item-3::before {
+    background-image: url('../img/visualization-bg-sm.jpg');
+  }
+
+  .courses__item-4::before {
+    background-image: url('../img/sculpting-bg-sm.jpg');
+  }
+
+  .courses__caption {
+    line-height: 130%;
+  }
+
+  .courses__text {
+    margin-bottom: 35px
+  }
+
+  .courses__item .btn {
+    padding: 20px 49px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .section-title {
+    font-size: 20px;
+    line-height: 130%;
+  }
+
+  .section-offset {
+    padding-top: 50px;
+  }
+
+  .header__container {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding-top: 25px;
+    padding-bottom: 24px;
+  }
+
+  .logo {
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    margin-bottom: 22px;
+  }
+
+  .nav {
+    width: calc(100% + 15px);
+    overflow: scroll;
+  }
+
+  .hero {
+    padding-top: 37px;
+    padding-bottom: 49px;
+  }
+
+  .hero__title {
+    margin-bottom: 5px;
+    font-size: 30px;
+  }
+
+  .hero__descr {
+    margin-bottom: 44px;
+    font-size: 16px;
+    line-height: 130%;
+  }
+
+  .hero__btn {
+    padding: 21px 54px;
+    font-size: 16px;
+  }
+
+  .advantages {
+    padding-bottom: 36px;
+  }
+
+  .advantages__top {
+    margin-bottom: 11px;
+  }
+
+  .advantages__image {
+    display: none;
+  }
+
+  .advantages__title {
+    margin-bottom: 2px;
+  }
+
+  .advantages__list {
+    row-gap: 6px;
+  }
+
+  .advantages__item {
+    padding: 14px 0 14px 110px;
+    min-height: 82px;
+    background-position: left center;
+  }
+
+  .teachers {
+    padding-top: 45px;
+    padding-bottom: 47px;
+  }
+
+  .teachers__img img {
+    width: 100%;
+  }
+
+  .courses {
+    padding-top: 44px;
+    padding-bottom: 50px;
+  }
+
+  .courses__item {
+    padding-right: 30px;
+    min-height: 653px;
+  }
+
+  .courses__item-1::before {
+    background-image: url('../img/cinema-bg-xs.jpg');
+  }
+
+  .courses__item-2::before {
+    background-image: url('../img/blender-bg-xs.jpg');
+  }
+
+  .courses__item-3::before {
+    background-image: url('../img/visualization-bg-xs.jpg');
+  }
+
+  .courses__item-4::before {
+    background-image: url('../img/sculpting-bg-xs.jpg');
+  }
+
+  .courses__item .btn {
+    padding: 20px 56px;
+  }
+}
