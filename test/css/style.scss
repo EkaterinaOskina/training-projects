@@ -1,0 +1,607 @@
+@import '_variables.scss';
+@import 'common.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  padding: 24px 20px;
+  background-color: $whiteColor;
+  visibility: hidden;
+  backface-visibility: hidden;
+  transition: all 0.3s ease-in-out;
+
+  &.open {
+    visibility: visible;
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 22px;
+    height: 22px;
+
+    svg {
+      fill: $closeBtnColor;
+      transition: fill 0.3s ease-in-out;
+    }
+
+    &:hover {
+      svg {
+        fill: $hoverColor;
+      }
+    }
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 31px;
+    width: 85%;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: $blackColor;
+  }
+
+  &__form {
+    margin-bottom: 30px;
+  }
+
+  &__data-input {
+    margin-bottom: 24px;
+  }
+
+  &__input {
+    display: block;
+    padding: 16px 24px;
+    width: 100%;
+    border: 2px solid $lightBlueColor;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 22px;
+    color: $blackColor;
+
+    &::placeholder {
+      color: $grayColor;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+  }
+
+  &__btn {
+    display: block;
+    width: 100%;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: $whiteColor;
+    text-align: center;
+    background-color: $redHoverColor;
+    transition: color 0.3s ease-in-out;
+  }
+
+  &__link {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: $blueColor;
+    text-decoration-line: underline;
+
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+
+    &:hover {
+      color: $hoverColor;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  background-color: $overlayColor;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.open~.overlay {
+  opacity: 1;
+	visibility: visible;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 21px 8px 15px;
+  width: 100%;
+  border-bottom: 1px solid $lightBlueColor;
+  background-color: $whiteColor;
+}
+
+.logo {
+  width: 195px;
+  height: 30px;
+}
+
+.burger {
+  position: relative;
+  width: 23px;
+  height: 17px;
+
+  &__line {
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background-color: $blueColor;
+    transform: translateX(-50%) rotate(0deg);
+    transition: all 0.3s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0;
+
+      &.open {
+        transform: translateX(-50%) rotate(45deg);
+        transform-origin: 15% 150%;
+      }
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      &.open {
+        opacity: 0;
+      }
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+
+      &.open {
+        transform: translateX(-50%) rotate(-45deg);
+        transform-origin: 10% -50%;
+      }
+    }
+  }
+
+  &:hover {
+    .burger {
+      &__line {
+        background-color: $hoverColor;
+      }
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 48px;
+  right: -268px;
+  width: 268px;
+  height: 65vh;
+  padding: 20px;
+  box-shadow: 0px 3px 12px $boxShadowBurgerColor;
+  background-color: $navBgColor;
+  transition: right 0.3s ease-in-out;
+
+  &.open {
+    right: 0;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 18px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: $blackColor;
+    text-transform: uppercase;
+  }
+
+  a {
+    font-size: 16px;
+    line-height: 22px;
+    color: $blueColor;
+    text-decoration-line: underline;
+  }
+}
+
+.personal-area {
+  margin-bottom: 39px;
+
+  &__btn {
+    font-size: 16px;
+    line-height: 22px;
+    color: $blueColor;
+    text-decoration-line: underline;
+  }
+}
+
+.how-work {
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 22px;
+    }
+  }
+}
+
+.help-btn {
+  display: none;
+
+  &__ellipse {
+    stroke: $blueColor;
+    transition: stroke 0.3s ease-in-out;
+  }
+
+  &__question-mark {
+    fill: $blueColor;
+    transition: fill 0.3s ease-in-out;
+  }
+
+  &:hover {
+    .help-btn {
+      &__ellipse {
+        stroke: $hoverColor;
+      }
+
+      &__question-mark {
+        fill: $hoverColor;
+      }
+    }
+  }
+}
+
+.tooltip-help {
+  position: absolute;
+  top: 51px;
+  right: 17px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 24px;
+
+  background-color: $whiteColor;
+  box-shadow: 0px 3px 12px $boxShadowTooltipColor;
+  visibility: hidden;
+  transition: visibility 0.3s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 16px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent $whiteColor transparent;
+  }
+
+  &.open {
+    visibility: visible;
+  }
+
+  &__caption {
+    font-size: 16px;
+    line-height: 24px;
+    color: $blackColor;
+  }
+
+  &__phone {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+    color: $blackColor;
+  }
+
+  &__link {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: $blueColor;
+    text-decoration-line: underline;
+  }
+}
+
+.search {
+  padding: 88px 0 40px;
+  background-image: url(../img/pic_main.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &__title {
+    color: $whiteColor;
+  }
+
+  &__form {
+    position: relative;
+    margin-bottom: 9px;
+  }
+
+  &__input {
+    display: block;
+    padding: 10px 40px 10px 10px;
+    width: 100%;
+    border: 2px solid $lightBlueColor;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    color: $blackColor;
+  }
+
+  &__input::placeholder {
+    color: $grayColor;
+  }
+
+  &__btn {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    svg {
+      fill: $blueColor;
+      transition: fill 0.3s ease-in-out;
+    }
+
+    &--text {
+      display: none;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 33px;
+      color: $whiteColor;
+    }
+
+    &:hover {
+      svg {
+        fill: $hoverColor;
+      }
+    }
+  }
+
+  &__descr {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+    color: $whiteColor;
+  }
+}
+
+.pay {
+  padding-top: 28px;
+
+  &__title {
+    &--desktop {
+      display: none;
+    }
+  }
+}
+
+.pay-nav {
+  display: none;
+  margin-bottom: 20px;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 28px;
+    row-gap: 10px;
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  &__link {
+    font-size: 20px;
+    line-height: 30px;
+    color: $blueColor;
+    border-bottom: 1px dotted $blueColor;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $hoverColor;
+    }
+  }
+
+  &__more {
+    font-size: 19px;
+    line-height: 26px;
+    color: $blackColor;
+  }
+}
+
+.payment-services {
+
+  &__item {
+    position: relative;
+    padding: 4px 0 8px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 32vw;
+
+    &:nth-child(2n-1) {
+      background-position: right center;
+    }
+
+    &:nth-child(2n) {
+      background-position: left center;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -20px;
+      width: calc(100% + 40px);
+      height: 1px;
+      background-color: $lightBlueColor;
+    }
+  }
+
+  &__title {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    margin-right: 14px;
+    fill: $blueColor;
+    transition: fill 0.3s ease-in-out;
+  }
+
+  &__title-text {
+    margin: 0;
+    border-bottom: 1px dotted $blueColor;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: $blueColor;
+    transition: color 0.3s ease-in-out;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    right: -4px;
+    fill: $blueColor;
+    transform: translateY(-50%);
+    transition: fill 0.3s ease-in-out;
+  }
+
+  &__title:hover {
+    .payment-services {
+      &__icon {
+        fill: $hoverColor;
+      }
+
+      &__title-text {
+        color: $hoverColor;
+      }
+
+      &__arrow {
+        fill: $hoverColor;
+      }
+    }
+  }
+
+  &__content-wrapper {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease-in-out;
+  }
+
+  &__content {
+    padding: 17px 0 13px;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: $blackColor;
+
+    &:not(:last-child) {
+      margin-bottom: 21px;
+    }
+
+    span {
+      display: block;
+    }
+  }
+
+  &__par:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  &__important {
+    display: block;
+    font-weight: 700;
+    color: $redColor;
+    text-transform: uppercase;
+  }
+
+  &__link {
+    color: $blueColor;
+    text-decoration-line: underline;
+    pointer-events: auto;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $hoverColor;
+    }
+  }
+}
+
+.partners {
+  padding: 25px 0 32px;
+
+  &__title {
+    margin-bottom: 27px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: $colGapPartners;
+    row-gap: $rowGapPartners;
+  }
+
+  &__item {
+    width: calc((100% - $offsetPartners * $colGapPartners) / ($offsetPartners + 1));
+    text-align: center;
+  }
+
+  &__logo {
+    margin-bottom: 6px;
+    width: 110px;
+    height: 100px;
+  }
+
+  &__caption {
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: $blackColor;
+  }
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: $lightBlueColor;
+
+  &__copyright {
+    margin: 0;
+    margin-bottom: 17px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.rotate180 {
+  transform: rotate(180deg) translateY(50%);
+}

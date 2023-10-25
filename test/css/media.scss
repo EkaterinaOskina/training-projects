@@ -1,0 +1,326 @@
+@import '_variables.scss';
+
+@media (min-width: 576px) {
+  .section-title {
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  .logo {
+    width: 245px;
+    height: 37px;
+  }
+
+  .burger {
+    width: 27px;
+    height: 20px;
+  }
+
+  .search {
+    &__descr {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .payment-services {
+    &__title-text {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .partners {
+    &__item {
+      width: calc((100% - ($offsetPartners + 1) * $colGapPartners) / ($offsetPartners + 2));
+    }
+  }
+
+  .footer {
+    &__copyright {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .modal {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: unset;
+    padding: 40px;
+    transform: translate(-50%, -70%);
+
+    &.open {
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .container {
+    padding: 0 25px;
+  }
+
+  .section-title {
+    margin-bottom: 17px;
+    font-size: 36px;
+    line-height: 49px;
+  }
+
+  .header {
+    flex-direction: row-reverse;
+    padding: 10px 25px 10px 32px;
+  }
+
+  .logo {
+    width: 295px;
+    height: 44px;
+  }
+
+  .burger {
+    width: 30px;
+    height: 23px;
+
+    &__line {
+      &:nth-child(1) {
+        &.open {
+          transform-origin: 10% 200%;
+        }
+      }
+
+      &:nth-child(3) {
+        &.open {
+          transform-origin: 10% -100%;
+        }
+      }
+    }
+  }
+
+  .nav {
+    top: 68.5px;
+    left: -280px;
+    width: 280px;
+    height: 72vh;
+    transition: left 0.3s ease-in-out;
+
+    &.open {
+      left: 0;
+    }
+  }
+
+  .help-btn {
+    display: block;
+  }
+
+  .search {
+    padding: 157px 0 112px;
+    background-image: url(../img/pic_main@2x.jpg);
+
+    &__title {
+      color: $whiteColor;
+      text-align: left;
+    }
+
+    &__form {
+      display: flex;
+      margin-bottom: 11px;
+    }
+
+    &__input {
+      margin-right: 1.8%;
+      padding: 17px 24px;
+      width: 83.5%;
+      border-radius: 8px;
+      line-height: 22px;
+    }
+
+    &__btn {
+      position: initial;
+      width: 14.7%;
+      border-radius: 8px;
+      text-align: center;
+      vertical-align: middle;
+      background-color: $redColor;
+      transform: unset;
+      transition: background-color 0.3s ease-in-out;
+
+      svg {
+        display: none;
+      }
+
+      &--text {
+        display: block;
+      }
+
+      &:hover {
+        background-color: $redHoverColor;
+      }
+    }
+
+    &__descr {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .pay {
+    padding-top: 60px;
+
+    &__title {
+      margin-bottom: 15px;
+
+      &--mobile {
+        display: none;
+      }
+
+      &--desktop {
+        display: block;
+      }
+    }
+  }
+
+  .pay-nav {
+    display: block;
+  }
+
+  .payment-services {
+    &__item {
+      position: relative;
+      min-height: 440px;
+      padding: 58px 0;
+      cursor: unset;
+      pointer-events: none;
+
+      &::after {
+        left: -25px;
+        width: 100vw;
+      }
+
+      &:last-child::after {
+        content: none;
+      }
+
+      &:nth-child(2n) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+
+    &__title {
+      margin-bottom: 22px;
+      width: 62.5%;
+    }
+
+    &__icon {
+      display: none;
+    }
+
+    &__title-text {
+      border-bottom: none;
+      font-size: 25px;
+      line-height: 32px;
+      color: $blackColor;
+    }
+
+    &__arrow {
+      display: none;
+    }
+
+
+    &__content-wrapper {
+      display: block;
+      width: 62.5%;
+      height: unset;
+    }
+
+    &__content {
+      padding: 0;
+    }
+
+    &__text {
+      &:not(:last-child) {
+        margin-bottom: 35px;
+      }
+    }
+  }
+
+  #traffic-police {
+    background-image: url('../img/pic_block1.jpg');
+  }
+
+  #legal-debts {
+    background-image: url('../img/pic_block2.jpg');
+  }
+
+  #taxes {
+    background-image: url('../img/pic_block3.jpg');
+  }
+
+  #rosreestr-services {
+    background-image: url('../img/pic_block4.jpg');
+  }
+
+  .partners {
+    padding: 60px 0;
+
+    &__title {
+      margin-bottom: 53px;
+    }
+
+    &__logo {
+      margin-bottom: 15px;
+    }
+
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 33px 32px 35px;
+
+    &__copyright {
+      margin-bottom: 0;
+      width: 287px;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: left;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .payment-services {
+    &__item {
+      background-size: 320px;
+    }
+  }
+
+  .partners {
+    $gap: 12px;
+
+    &__list {
+      gap: $gap;
+    }
+
+    &__item {
+      width: calc((100% - ($offsetPartners + 4) * $gap) / ($offsetPartners + 5));
+    }
+  }
+}
+
+@media (min-width: $containerMaxWidth) {
+  .payment-services {
+    &__item {
+      &::after {
+        left: calc((-1) * (100vw - $containerMaxWidth) / 2 - 25px);
+      }
+    }
+  }
+}

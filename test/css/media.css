@@ -1,0 +1,237 @@
+@media (min-width: 576px) {
+  .section-title {
+    font-size: 28px;
+    line-height: 38px;
+  }
+  .logo {
+    width: 245px;
+    height: 37px;
+  }
+  .burger {
+    width: 27px;
+    height: 20px;
+  }
+  .search__descr {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .payment-services__title-text {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .partners__item {
+    width: calc((100% - 48px) / 3);
+  }
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+@media (min-width: 800px) {
+  .modal {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: unset;
+    padding: 40px;
+    transform: translate(-50%, -70%);
+  }
+  .modal.open {
+    transform: translate(-50%, -50%);
+  }
+  .container {
+    padding: 0 25px;
+  }
+  .section-title {
+    margin-bottom: 17px;
+    font-size: 36px;
+    line-height: 49px;
+  }
+  .header {
+    flex-direction: row-reverse;
+    padding: 10px 25px 10px 32px;
+  }
+  .logo {
+    width: 295px;
+    height: 44px;
+  }
+  .burger {
+    width: 30px;
+    height: 23px;
+  }
+  .burger__line:nth-child(1).open {
+    transform-origin: 10% 200%;
+  }
+  .burger__line:nth-child(3).open {
+    transform-origin: 10% -100%;
+  }
+  .nav {
+    top: 68.5px;
+    left: -280px;
+    width: 280px;
+    height: 72vh;
+    transition: left 0.3s ease-in-out;
+  }
+  .nav.open {
+    left: 0;
+  }
+  .help-btn {
+    display: block;
+  }
+  .search {
+    padding: 157px 0 112px;
+    background-image: url(../img/pic_main@2x.jpg);
+  }
+  .search__title {
+    color: #fff;
+    text-align: left;
+  }
+  .search__form {
+    display: flex;
+    margin-bottom: 11px;
+  }
+  .search__input {
+    margin-right: 1.8%;
+    padding: 17px 24px;
+    width: 83.5%;
+    border-radius: 8px;
+    line-height: 22px;
+  }
+  .search__btn {
+    position: initial;
+    width: 14.7%;
+    border-radius: 8px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #d30531;
+    transform: unset;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .search__btn svg {
+    display: none;
+  }
+  .search__btn--text {
+    display: block;
+  }
+  .search__btn:hover {
+    background-color: #e1133f;
+  }
+  .search__descr {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .pay {
+    padding-top: 60px;
+  }
+  .pay__title {
+    margin-bottom: 15px;
+  }
+  .pay__title--mobile {
+    display: none;
+  }
+  .pay__title--desktop {
+    display: block;
+  }
+  .pay-nav {
+    display: block;
+  }
+  .payment-services__item {
+    position: relative;
+    min-height: 440px;
+    padding: 58px 0;
+    cursor: unset;
+    pointer-events: none;
+  }
+  .payment-services__item::after {
+    left: -25px;
+    width: 100vw;
+  }
+  .payment-services__item:last-child::after {
+    content: none;
+  }
+  .payment-services__item:nth-child(2n) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .payment-services__title {
+    margin-bottom: 22px;
+    width: 62.5%;
+  }
+  .payment-services__icon {
+    display: none;
+  }
+  .payment-services__title-text {
+    border-bottom: none;
+    font-size: 25px;
+    line-height: 32px;
+    color: #000;
+  }
+  .payment-services__arrow {
+    display: none;
+  }
+  .payment-services__content-wrapper {
+    display: block;
+    width: 62.5%;
+    height: unset;
+  }
+  .payment-services__content {
+    padding: 0;
+  }
+  .payment-services__text:not(:last-child) {
+    margin-bottom: 35px;
+  }
+  #traffic-police {
+    background-image: url("../img/pic_block1.jpg");
+  }
+  #legal-debts {
+    background-image: url("../img/pic_block2.jpg");
+  }
+  #taxes {
+    background-image: url("../img/pic_block3.jpg");
+  }
+  #rosreestr-services {
+    background-image: url("../img/pic_block4.jpg");
+  }
+  .partners {
+    padding: 60px 0;
+  }
+  .partners__title {
+    margin-bottom: 53px;
+  }
+  .partners__logo {
+    margin-bottom: 15px;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 33px 32px 35px;
+  }
+  .footer__copyright {
+    margin-bottom: 0;
+    width: 287px;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+  }
+  .footer__copyright span {
+    display: block;
+  }
+}
+@media (min-width: 992px) {
+  .payment-services__item {
+    background-size: 320px;
+  }
+  .partners__list {
+    gap: 12px;
+  }
+  .partners__item {
+    width: calc((100% - 60px) / 6);
+  }
+}
+@media (min-width: 1010px) {
+  .payment-services__item::after {
+    left: calc(-1 * (100vw - 1010px) / 2 - 25px);
+  }
+}/*# sourceMappingURL=media.css.map */
