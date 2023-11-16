@@ -633,7 +633,7 @@ a {
   width: 36px;
   height: 36px;
   border: 4px solid var(--firm-color);
-  border-top: 4px solid var(--white-color);
+  border-top: 4px solid transparent;
   border-radius: 50%;
   transform: translate(calc(50% + 16px), -50%);
   animation: spin 2s linear infinite;
