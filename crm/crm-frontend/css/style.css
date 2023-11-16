@@ -128,8 +128,10 @@ a {
   z-index: 100;
   padding: 24px 30px 29px;
   width: 450px;
+  max-height: 80%;
   background-color: #fff;
   box-shadow: 0px 0px 35px 0px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
   visibility: hidden;
   backface-visibility: hidden;
   transform: translate(-50%, -70%);
