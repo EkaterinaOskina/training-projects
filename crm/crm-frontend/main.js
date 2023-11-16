@@ -1,5 +1,6 @@
 (() => {
   const WAIT_TIME_MS = 300;
+  const API_URL = 'http://oskinak.ru:3001/api/clients';
   let timeout;
   let clientsList;
   let currentColumnSort = "";
@@ -31,25 +32,25 @@
 
   // функция получения списка клиентов с сервера
   async function getClientData(idClient) {
-    const response = await fetch(`http://localhost:3000/api/clients/${idClient}`);
+    const response = await fetch(`${API_URL}/${idClient}`);
     return response;
   }
 
   // функция получения данных клиента с сервера
   async function getClientsData() {
-    const response = await fetch('http://localhost:3000/api/clients');
+    const response = await fetch(API_URL);
     return await response.json();
   }
 
   // функция получения данных клиента с сервера в соответствии с поисковым запросом
   async function getClientsDataSearch(value) {
-    const response = await fetch(`http://localhost:3000/api/clients?search=${value}`);
+    const response = await fetch(`${API_URL}?search=${value}`);
     return await response.json();
   }
 
   // функция добавления клиента на сервер
   async function addClientData(clientObj) {
-    const response = await fetch('http://localhost:3000/api/clients', {
+    const response = await fetch(API_URL, {
       method: 'POST',
       body: JSON.stringify({
         name: clientObj.name,
@@ -66,7 +67,7 @@
 
   // функция изменения данных клиента на сервер
   async function changeClientData(clientObj, changeData) {
-    const response = await fetch(`http://localhost:3000/api/clients/${clientObj.id}`, {
+    const response = await fetch(`${API_URL}/${clientObj.id}`, {
       method: 'PATCH',
       body: JSON.stringify(changeData),
       headers: {
@@ -78,7 +79,7 @@
 
   // функция удаления клиента
   async function deleteClientData(clientObj) {
-    const response = await fetch(`http://localhost:3000/api/clients/${clientObj.id}`, {
+    const response = await fetch(`${API_URL}/${clientObj.id}`, {
       method: 'DELETE',
     });
     return response;
