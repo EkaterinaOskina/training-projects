@@ -72,6 +72,11 @@
     width: calc(100% + 10px);
     overflow: auto;
   }
+
+  .loader-icon {
+    left: 46vw;
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 469.98px) {
