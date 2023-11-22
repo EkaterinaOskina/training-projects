@@ -46,6 +46,9 @@
   .col-time-creation__content,
   .col-time-change__content,
   .col-actions__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 
@@ -61,6 +64,8 @@
   }
 
   .header__container {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
   }
 
@@ -75,6 +80,8 @@
 
   .loader-icon {
     left: 46vw;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
     transform: translateX(0);
   }
 }
@@ -109,6 +116,8 @@
   }
 
   .header__container {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
@@ -131,7 +140,12 @@
   }
 
   .modal-change-data__top {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
     gap: 5px;
   }
@@ -140,4 +154,3 @@
     padding: 0;
   }
 }
-

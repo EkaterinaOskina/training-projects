@@ -1,6 +1,6 @@
 (() => {
   const WAIT_TIME_MS = 300;
-  const API_URL = 'https://oskinak.ru:3001/api/clients';
+  const API_URL = 'https://oskinak.ru:3001';
   let timeout;
   let clientsList;
   let currentColumnSort = "";
@@ -32,25 +32,25 @@
 
   // функция получения списка клиентов с сервера
   async function getClientData(idClient) {
-    const response = await fetch(`${API_URL}/${idClient}`);
+    const response = await fetch(`${API_URL}/api/clients/${idClient}`);
     return response;
   }
 
   // функция получения данных клиента с сервера
   async function getClientsData() {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}/api/clients`);
     return await response.json();
   }
 
   // функция получения данных клиента с сервера в соответствии с поисковым запросом
   async function getClientsDataSearch(value) {
-    const response = await fetch(`${API_URL}?search=${value}`);
+    const response = await fetch(`${API_URL}/api/clients?search=${value}`);
     return await response.json();
   }
 
   // функция добавления клиента на сервер
   async function addClientData(clientObj) {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/api/clients`, {
       method: 'POST',
       body: JSON.stringify({
         name: clientObj.name,
@@ -67,7 +67,7 @@
 
   // функция изменения данных клиента на сервер
   async function changeClientData(clientObj, changeData) {
-    const response = await fetch(`${API_URL}/${clientObj.id}`, {
+    const response = await fetch(`${API_URL}/api/clients/${clientObj.id}`, {
       method: 'PATCH',
       body: JSON.stringify(changeData),
       headers: {
@@ -79,7 +79,7 @@
 
   // функция удаления клиента
   async function deleteClientData(clientObj) {
-    const response = await fetch(`${API_URL}/${clientObj.id}`, {
+    const response = await fetch(`${API_URL}/api/clients/${clientObj.id}`, {
       method: 'DELETE',
     });
     return response;
@@ -259,6 +259,24 @@
     tooltip.append(tooltipText);
 
     return tooltip;
+  }
+
+  // функция открытия tooltip
+  function openTooltip(text, top, left) {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.style.top = top;
+    tooltip.style.left = left;
+    const tooltipText = tooltip.querySelector('.tooltip__text');
+    tooltipText.textContent = text;
+    tooltip.classList.add('open');
+  }
+
+  // функция закрытия tooltip
+  function closeTooltip() {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.classList.remove('open');
+    const tooltipText = tooltip.querySelector('.tooltip__text');
+    tooltipText.textContent = "";
   }
 
   // функция создания svg иконки
@@ -522,10 +540,10 @@
   }
 
   // функция выделения колонки цветом, по которой производится сортировка
-  function columnSortSelection(columnText) {
-    arrColSort.forEach(text => {
-      if (text === columnText) text.classList.add('sort');
-      else text.classList.remove('sort');
+  function columnSortSelection(column) {
+    arrColSort.forEach(col => {
+      if (col === column) col.classList.add('sort');
+      else col.classList.remove('sort');
     });
   }
 
@@ -549,15 +567,15 @@
     let copyArr = [...clientsList];
     renderClientsTable(copyArr.sort((a, b) => Number(a['id']) - Number(b['id'])));
 
-    const colIdText = document.getElementById('col-text-id');
-    columnSortSelection(colIdText);
+    const colId = document.querySelector('.col-id.col-title');
+    columnSortSelection(colId);
 
     const colIdArrow = document.getElementById('arrow-sort-id');
     rotateArrowSort(colIdArrow);
   }
 
   // функция сортировки списка клиентов
-  function sort(columnName, typeSortCol, colText, colArrow) {
+  function sort(columnName, typeSortCol, col, colArrow) {
     if (currentColumnSort === columnName) {
       dir = !dir;
     } else {
@@ -606,7 +624,7 @@
 
     currentColumnSort = columnName;
 
-    columnSortSelection(colText);
+    columnSortSelection(col);
     rotateArrowSort(colArrow);
   }
 
@@ -621,9 +639,8 @@
     tableHeadRow.classList.add('table__row-title');
 
     const colId = document.createElement('th');
-    colId.classList.add('col-id');
+    colId.classList.add('col-id', 'col-title');
     const colIdText = document.createElement('span');
-    colIdText.id = "col-text-id";
     colIdText.classList.add('col-text');
     colIdText.textContent = "ID";
     colId.append(colIdText);
@@ -634,12 +651,12 @@
     colId.append(colIdArrow);
     colId.addEventListener('click', () => {
       // функция сортировки по ID
-      sort('id', 'number', colIdText, colIdArrow);
+      sort('id', 'number', colId, colIdArrow);
     });
     tableHeadRow.append(colId);
 
     const colFullname = document.createElement('th');
-    colFullname.classList.add('col-fullname');
+    colFullname.classList.add('col-fullname', 'col-title');
     const colFullnameText = document.createElement('span');
     colFullnameText.classList.add('col-text');
     colFullnameText.textContent = "Фамилия Имя Отчество";
@@ -655,7 +672,7 @@
     colFullname.append(colFullnameAlphabet);
     colFullname.addEventListener('click', () => {
       // функция сортировки по ФИО
-      sort('fullname', 'string', colFullnameText, colFullnameArrow);
+      sort('fullname', 'string', colFullname, colFullnameArrow);
       if (dir) {
         colFullnameAlphabet.textContent = "А-Я";
       } else {
@@ -665,7 +682,7 @@
     tableHeadRow.append(colFullname);
 
     const colTimeCreation = document.createElement('th');
-    colTimeCreation.classList.add('col-time-creation');
+    colTimeCreation.classList.add('col-time-creation', 'col-title');
     const colTimeCreationText = document.createElement('span');
     colTimeCreationText.classList.add('col-text');
     colTimeCreationText.textContent = "Дата и время создания";
@@ -676,12 +693,12 @@
     colTimeCreation.append(colTimeCreationArrow);
     colTimeCreation.addEventListener('click', () => {
       // функция сортировки по времени создания
-      sort('createdAt', 'date', colTimeCreationText, colTimeCreationArrow);
+      sort('createdAt', 'date', colTimeCreation, colTimeCreationArrow);
     });
     tableHeadRow.append(colTimeCreation);
 
     const colTimeChange = document.createElement('th');
-    colTimeChange.classList.add('col-time-change');
+    colTimeChange.classList.add('col-time-change', 'col-title');
     const colTimeChangeText = document.createElement('span');
     colTimeChangeText.classList.add('col-text');
     colTimeChangeText.textContent = "Последние изменения";
@@ -692,19 +709,19 @@
     colTimeChange.append(colTimeChangeArrow);
     colTimeChange.addEventListener('click', () => {
       // функция сортировки по времени последнего изменения
-      sort('updatedAt', 'date', colTimeChangeText, colTimeChangeArrow);
+      sort('updatedAt', 'date', colTimeChange, colTimeChangeArrow);
     });
     tableHeadRow.append(colTimeChange);
 
-    arrColSort = [colIdText, colFullnameText, colTimeCreationText, colTimeChangeText];
+    arrColSort = [colId, colFullname, colTimeCreation, colTimeChange];
 
     const colContacts = document.createElement('th');
-    colContacts.classList.add('col-contacts');
+    colContacts.classList.add('col-contacts', 'col-title');
     colContacts.textContent = "Контакты";
     tableHeadRow.append(colContacts);
 
     const colActions = document.createElement('th');
-    colActions.classList.add('col-actions');
+    colActions.classList.add('col-actions', 'col-title');
     colActions.textContent = "Действия";
     tableHeadRow.append(colActions);
 
@@ -767,6 +784,7 @@
   function createModalCloseButton() {
     const closeButton = document.createElement('button');
     closeButton.classList.add('modal-close', 'btn-reset');
+    closeButton.ariaLabel = "Закрыть модальное окно";
 
     const closeButtonIcon = createIcon('close');
     closeButtonIcon.classList.add('modal-close__icon');
@@ -845,6 +863,7 @@
     const modalDeleteContactButton = document.createElement('button');
     modalDeleteContactButton.classList.add('modal-delete-contact', 'btn-reset');
     modalDeleteContactButton.type = "button";
+    modalDeleteContactButton.ariaLabel = "Удалить контакт";
 
     const modalDeleteContactIcon = createIcon('delete');
     modalDeleteContactIcon.classList.add('modal-delete-contact__icon');
@@ -864,6 +883,15 @@
         const modalAddContactsContent = modal.querySelector('.modal-add-contacts__content');
         modalAddContactsContent.append(modalAddContactButton);
       }
+      closeTooltip();
+    });
+    modalDeleteContactButton.addEventListener('mouseover', () => {
+      const top = (modalDeleteContactButton.getBoundingClientRect().top - 14) + "px";
+      const left = (modalDeleteContactButton.getBoundingClientRect().left + 13) + "px";
+      openTooltip('Удалить контакт', top, left);
+    });
+    modalDeleteContactButton.addEventListener('mouseout', () => {
+      closeTooltip();
     });
 
     return modalDeleteContactButton;
@@ -992,15 +1020,7 @@
     const modalAddContactButton = document.createElement('button');
     modalAddContactButton.classList.add('modal-add-contact-btn', 'btn-reset', 'flex');
     modalAddContactButton.type = "button";
-
-    const modalAddContactIcon = createIcon('add_contact');
-    modalAddContactIcon.classList.add('modal-add-contact-btn__icon');
-    modalAddContactButton.append(modalAddContactIcon);
-
-    const modalAddContactText = document.createElement('span');
-    modalAddContactText.classList.add('modal-add-contact-btn__text');
-    modalAddContactText.textContent = "Добавить контакт";
-    modalAddContactButton.append(modalAddContactText);
+    modalAddContactButton.textContent = "Добавить контакт";
 
     modalAddContactButton.addEventListener('click', () => {
       const modalAddContacts = modal.querySelector('.modal-add-contacts');
@@ -1173,6 +1193,7 @@
     modalForm.noValidate = true;
 
     const surnameField = createModalField('surname', 'Фамилия');
+    surnameField.modalInput.ariaLabel = "Введите фамилию - обязательное поле";
     surnameField.modalInput.required = true;
     surnameField.modalInput.addEventListener('input', () => {
       if (!modalError.classList.contains('none')) checkInput(surnameField.modalInput);
@@ -1180,6 +1201,7 @@
     modalForm.append(surnameField.modalField);
 
     const nameField = createModalField('name', 'Имя');
+    nameField.modalInput.ariaLabel = "Введите имя - обязательное поле";
     nameField.modalInput.required = true;
     nameField.modalInput.addEventListener('input', () => {
       if (!modalError.classList.contains('none')) checkInput(nameField.modalInput);
@@ -1188,6 +1210,7 @@
 
     const lastNameField = createModalField('lastName', 'Отчество');
     lastNameField.modalField.classList.add('modal-field--last');
+    lastNameField.modalInput.ariaLabel = "Введите отчество";
     modalForm.append(lastNameField.modalField);
 
     const modalAddContacts = createModalAddContacts(modal);
@@ -1231,6 +1254,14 @@
 
     const modalContactsList = modalAddData.querySelector('.modal-contacts-list');
     modalContactsList.innerHTML = "";
+
+    // проверяем есть ли кнопка добавления нового контакта
+    let modalAddContactButton = modalAddData.querySelector('.modal-add-contact-btn');
+    if (!modalAddContactButton) {
+      modalAddContactButton = createModalAddContactButton(modalAddData);
+      const modalAddContactsContent = modalAddData.querySelector('.modal-add-contacts__content');
+      modalAddContactsContent.append(modalAddContactButton);
+    }
 
     const modalError = modalAddData.querySelector('.modal-error');
     modalError.classList.add('none');
@@ -1365,7 +1396,7 @@
     modalButtonReversed.textContent = "Удалить клиента";
     modalButtonReversed.addEventListener('click', () => {
       closeModalOpen(modalChangeData);
-      openModalDeleteClient({ currentClientData, currentElement });
+      openModalDeleteClient({ clientObj: currentClientData, element: currentElement });
     });
 
     return modalChangeData;
@@ -1431,7 +1462,7 @@
     window.location.hash = `${clientObj.id}`;
     modalChangeData.classList.add('open');
 
-    const changeClientButton = element.querySelector('.btn-change-client');
+    const changeClientButton = currentElement.querySelector('.btn-change-client');
     changeClientButton.classList.remove('load');
 
     clearTimeout(timeout);
@@ -1541,6 +1572,9 @@
 
     modalDeleteData.classList.add('open');
 
+    const deleteClientButton = currentElement.querySelector('.btn-delete-client');
+    deleteClientButton.classList.remove('load');
+
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       modalDeleteData.focus();
@@ -1631,18 +1665,12 @@
     clientContactsItem.append(clientContactText);
 
     clientContactsItem.addEventListener('mouseover', () => {
-      const tooltip = document.getElementById('tooltip');
-      tooltip.style.top = (clientContactsItem.getBoundingClientRect().top - 26) + "px";
-      tooltip.style.left = (clientContactsItem.getBoundingClientRect().left + 8) + "px";
-      const tooltipText = tooltip.querySelector('.tooltip__text');
-      tooltipText.textContent = clientContactText.textContent;
-      tooltip.classList.add('open');
+      const top = (clientContactsItem.getBoundingClientRect().top - 26) + "px";
+      const left = (clientContactsItem.getBoundingClientRect().left + 8) + "px";
+      openTooltip(clientContactText.textContent, top, left);
     });
     clientContactsItem.addEventListener('mouseout', () => {
-      const tooltip = document.getElementById('tooltip');
-      tooltip.classList.remove('open');
-      const tooltipText = tooltip.querySelector('.tooltip__text');
-      tooltipText.textContent = "";
+      closeTooltip();
     });
 
     clientContactsList.append(clientContactsItem);
@@ -1740,11 +1768,15 @@
     const deleteClientButtonIcon = createIcon('delete');
     deleteClientButtonIcon.classList.add('btn-delete-client__icon');
     deleteClientButton.append(deleteClientButtonIcon);
+    const deleteClientButtonLoad = document.createElement('span');
+    deleteClientButtonLoad.classList.add('btn-delete-client__load');
+    deleteClientButton.append(deleteClientButtonLoad);
     const deleteClientButtonText = document.createElement('span');
     deleteClientButtonText.classList.add('btn-delete-client__text');
     deleteClientButtonText.textContent = "Удалить";
     deleteClientButton.append(deleteClientButtonText);
     deleteClientButton.addEventListener('click', () => {
+      deleteClientButton.classList.add('load');
       onDelete({ clientObj, element: rowClient });
     });
     colActionsContent.append(deleteClientButton);
