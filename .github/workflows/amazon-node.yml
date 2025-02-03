@@ -10,14 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: install ssh keys
+    - uses: actions/checkout@main
+    - name: install
       # check this thread to understand why its needed:
       # https://stackoverflow.com/a/70447517
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Приватный ключ для SSH
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}          # Адрес удаленного сервера
+        REMOTE_USER: ${{ secrets.RSYNC_USER }}          # Пользователь на удаленном сервере
+        REMOTE_DIR: ${{ secrets.WORKDIR }}            # Директория на удаленном сервере
+        REMOTE_PORT: ${{ secrets.RSYNC_PORT }}          # Нестандартный порт SSH
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        # ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git config --global --add safe.directory ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull --rebase && exit"
-    - name: cleanup
-      run: rm -rf ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        # ssh-keyscan -H $REMOTE_HOST -p $REMOTE_PORT >> ~/.ssh/known_hosts
+        ssh-keyscan -H -p $REMOTE_PORT $REMOTE_HOST >> ~/.ssh/known_hosts
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p $REMOTE_PORT" ./ $REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR/projects
+    
