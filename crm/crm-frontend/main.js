@@ -1,6 +1,6 @@
 (() => {
   const WAIT_TIME_MS = 300;
-  const API_URL = 'https://oskinak.ru:3001';
+  const API_URL = 'https://oskinak.ibooox.ru:3001';
   let timeout;
   let clientsList;
   let currentColumnSort = "";
